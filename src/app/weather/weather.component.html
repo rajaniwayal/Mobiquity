@@ -1,0 +1,41 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header">
+          Current Data
+        </div>
+        <div class="card-body calHeight">
+          <label>Select City</label>
+
+          <select class="form-control" (change)="sendToAPI($event)" name="defaultCity">
+            <option *ngFor="let weather of weathersCity; let i = index;" [value]="weather.city" >{{weather.city}}</option>
+          </select><br>
+
+          <div>
+            <h6 > {{ weatherForecastData.weather[0].description  | uppercase }}</h6>
+            <p>Wind speed (meter/sec): {{ weatherForecastData.wind.speed }}</p>
+            <span>Sunrise: {{ weatherForecastData.sys.sunrise | date:"HH:mm" }}</span><br>
+            <span>Sunset: {{ weatherForecastData.sys.sunset | date:"HH:mm" }}</span><br>
+            <span class="temperature">Temperature (Min): {{ weatherForecastData.main.temp_min }} </span> <br>
+            <span class="temperature">Temperature (Max): {{ ( weatherForecastData.main.temp_max) }}
+        </span>
+            <p>{{ weatherForecastData.dt_txt | date:'medium' }}</p>
+            <a [routerLink]="['/weather', weatherForecastData.name]" class="btn btn-primary">Detail Report</a>
+          </div>
+        </div>
+
+      </div>
+
+
+
+
+    </div>
+    <div class="col-md-6">
+      <router-outlet></router-outlet>
+
+  </div>
+</div>
+</div>
+
+
